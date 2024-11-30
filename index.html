@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystery Box</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="product">
+            <h1>Mystery Box</h1>
+            <p class="price">$300</p>
+            <p class="description">Unlock the thrill of the unknown with our Mystery Box. What’s inside? Only one way to find out!</p>
+            
+            <!-- Form to handle purchase -->
+            <form id="purchase-form">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+                <button type="submit" class="purchase-button">Purchase Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize EmailJS with your user ID
+        emailjs.init("oAgynKF7J8NRMIUf");
+
+        // Handle form submission
+        document.getElementById('purchase-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form submission
+
+            var email = document.getElementById('email').value;
+
+            // Send email via EmailJS
+            emailjs.sendForm("service_ken3yey", "template_o0zhr4e", this)
+                .then(function(response) {
+                    alert("Thank you! Your purchase request has been sent.");
+                }, function(error) {
+                    alert("Oops! Something went wrong. Please try again.");
+                });
+        });
+    </script>
+</body>
+</html>
